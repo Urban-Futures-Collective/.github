@@ -115,7 +115,9 @@ tests and packaging.
 - The PR description **MUST** state *what* changes and *why*, how it was
   tested, and link the related issue. Screenshots for UI changes.
 - At least **one approving review** from someone other than the author is
-  required before merging. Changes to security-relevant code (auth,
+  required before merging into `main`. Merges into an integration branch
+  (`staging`, `dev`) MAY be done by the author without review, so that work
+  can be tried in a shared environment without waiting. Changes to security-relevant code (auth,
   authorization, input handling, secrets) SHOULD get a second review.
 - CI **MUST** be green before merge.
 - Preferred merge strategy: **squash merge** with a Conventional-Commit title,
@@ -209,6 +211,9 @@ These are defaults for new repositories and the target for existing ones.
   with **Zod**, not only with static types.
 - Server-side secrets (API keys, LLM tokens) MUST stay in server routes /
   runtime config and never reach the client bundle.
+- User interfaces SHOULD meet **WCAG 2.1 level AA** (in Germany BITV 2.0):
+  keyboard operable, sufficient contrast, labelled form fields and controls,
+  text alternatives for images and maps where meaningful.
 - `package-lock.json` (or the lockfile of the chosen manager) is committed;
   pin exact versions for fast-moving SDKs where breaking minor releases are
   common.
@@ -250,6 +255,8 @@ These are defaults for new repositories and the target for existing ones.
 
 ## 6. APIs and interfaces
 
+### 6.1 General
+
 - Public HTTP APIs **MUST** be described by a machine-readable contract
   (OpenAPI; JSON Schema for tool/process inputs).
 - APIs are **versioned** (e.g. `/v1/…`). Breaking changes require a new major
@@ -264,6 +271,28 @@ These are defaults for new repositories and the target for existing ones.
 - Geodata: state the coordinate reference system explicitly (EPSG code / CRS
   URI). GeoJSON is WGS 84 (EPSG:4326) per RFC 7946; other CRSs must be
   declared.
+
+### 6.2 Process descriptions (OGC API – Processes)
+
+Model servers are consumed by generic clients (UMP, the UMP-X frontend, the MCP
+server) that build forms and tool schemas from the process description alone.
+A description that cannot be satisfied makes the process unusable for all of
+them. Therefore:
+
+- Every input **MUST** state `minOccurs` explicitly. Optional inputs have
+  `minOccurs: 0`; without it, clients treat the input as required.
+- A `default` **MUST** be valid against the input's own schema (an integer
+  under `type: integer`, never a placeholder such as `'auto'`). If the
+  library has an automatic mode, leave the input out (`minOccurs: 0`, no
+  default) or offer the mode as an explicit `enum` value.
+- Fixed choices **MUST** be declared as `enum`, so that clients can offer a
+  selection instead of free text.
+- Titles and descriptions of processes and inputs SHOULD be available in
+  English and German.
+- Results **MUST** be returned with a correct `Content-Type`, also when the
+  client sends no `Accept` header or `*/*`.
+- Expensive work belongs in the job, not in the request that creates it: an
+  asynchronous execution request SHOULD be accepted within seconds.
 
 ---
 
@@ -325,6 +354,10 @@ These are defaults for new repositories and the target for existing ones.
 - **Dependencies**: lockfiles committed; automated updates via Dependabot or
   Renovate; vulnerability scanning (e.g. `pip-audit`, `npm audit`, GitHub
   dependency review, container image scanning) in CI.
+- **Personal data**: new processing of personal data (new fields, logs,
+  third-party services the browser or server contacts) MUST be recorded in
+  the project's privacy inventory in the same PR, so that the privacy policy
+  can be kept accurate.
 - Vulnerabilities are reported privately as described in `SECURITY.md`,
   never in public issues.
 
@@ -340,6 +373,9 @@ These are defaults for new repositories and the target for existing ones.
 - Separate runtime, development and documentation dependencies
   (dependency groups / `devDependencies`).
 - Licences of dependencies MUST be compatible with the repository licence.
+- **Data sources** (e.g. OpenStreetMap under ODbL, terrain or weather data)
+  MUST be attributed as their licence requires, in the user interface where
+  the data is shown and in the documentation.
 
 ---
 
@@ -433,6 +469,7 @@ Copy into PR templates or use as a self-check:
 - [ ] Public APIs / config options documented; `CHANGELOG.md` updated
 - [ ] Breaking changes marked and migration path described
 - [ ] Security implications considered (auth, input validation, logging)
+- [ ] Personal data and data sources: privacy inventory and attribution updated
 - [ ] AI assistance reviewed and, if significant, disclosed
 
 ---
