@@ -255,6 +255,8 @@ These are defaults for new repositories and the target for existing ones.
 
 ## 6. APIs and interfaces
 
+### 6.1 General
+
 - Public HTTP APIs **MUST** be described by a machine-readable contract
   (OpenAPI; JSON Schema for tool/process inputs).
 - APIs are **versioned** (e.g. `/v1/…`). Breaking changes require a new major
@@ -270,7 +272,7 @@ These are defaults for new repositories and the target for existing ones.
   URI). GeoJSON is WGS 84 (EPSG:4326) per RFC 7946; other CRSs must be
   declared.
 
-### 6.1 Process descriptions (OGC API – Processes)
+### 6.2 Process descriptions (OGC API – Processes)
 
 Model servers are consumed by generic clients (UMP, the UMP-X frontend, the MCP
 server) that build forms and tool schemas from the process description alone.
