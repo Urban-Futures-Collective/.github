@@ -1,6 +1,6 @@
 # Code Conventions
 
-Organisation-wide conventions for contributing to repositories of the **Urban Futures Collective** (Urban Model Platform, UMP-X frontend, MCP server, model servers and related projects).
+Organisation-wide conventions for contributing to repositories of the [**Urban Futures Collective**](https://urbanfuturescollective.org) (Urban Model Platform, UMP-X frontend, MCP server, model servers and related projects).
 
 This document is deliberately high-level and language-agnostic. It describes the standard we are converging on, not only the current state of every repository.
 Where a repository does not (yet) meet a rule, new and changed code should follow the rule; existing code is migrated opportunistically ("leave it better than you found it"), not in unrelated pull requests.
