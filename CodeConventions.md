@@ -1,6 +1,6 @@
 # Code Conventions
 
-Organisation-wide conventions for contributing to repositories of the **Urban Futures Collective** (Urban Model Platform, UMP-X frontend, MCP server, model servers and related projects).
+Organisation-wide conventions for contributing to repositories of the [**Urban Futures Collective**](https://urbanfuturescollective.org) (Urban Model Platform, UMP-X frontend, MCP server, model servers and related projects).
 
 This document is deliberately high-level and language-agnostic. It describes the standard we are converging on, not only the current state of every repository.
 Where a repository does not (yet) meet a rule, new and changed code should follow the rule; existing code is migrated opportunistically ("leave it better than you found it"), not in unrelated pull requests.
@@ -104,7 +104,7 @@ tests and packaging.
 
   Types: `feat`, `fix`, `docs`, `refactor`, `perf`, `test`, `build`, `ci`,
   `chore`, `revert`.
-- Use the imperative mood ("Add retry", not "Added retry").
+- Use the imperative mode ("Add retry", not "Added retry").
 - One logical change per commit. Formatting-only changes go in separate commits.
 - Breaking changes **MUST** be marked (`feat!:` or `BREAKING CHANGE:` footer).
 
@@ -409,7 +409,7 @@ AI coding assistants are welcome tools. The following applies:
   understand, review and test AI-generated code exactly like their own.
 - AI-generated code MUST meet all conventions in this document; "the assistant
   wrote it" is not a justification for deviations.
-- Significant AI assistance SHOULD be disclosed (e.g. `Co-authored-by:`
+- AI assistance MUST be disclosed (e.g. `Co-authored-by:`
   trailer or a note in the PR description).
 - Never paste secrets, credentials, personal data or non-public data into
   external AI services.
