@@ -104,7 +104,7 @@ tests and packaging.
 
   Types: `feat`, `fix`, `docs`, `refactor`, `perf`, `test`, `build`, `ci`,
   `chore`, `revert`.
-- Use the imperative mood ("Add retry", not "Added retry").
+- Use the imperative mode ("Add retry", not "Added retry").
 - One logical change per commit. Formatting-only changes go in separate commits.
 - Breaking changes **MUST** be marked (`feat!:` or `BREAKING CHANGE:` footer).
 
