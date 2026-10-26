@@ -409,7 +409,7 @@ AI coding assistants are welcome tools. The following applies:
   understand, review and test AI-generated code exactly like their own.
 - AI-generated code MUST meet all conventions in this document; "the assistant
   wrote it" is not a justification for deviations.
-- Significant AI assistance SHOULD be disclosed (e.g. `Co-authored-by:`
+- AI assistance MUST be disclosed (e.g. `Co-authored-by:`
   trailer or a note in the PR description).
 - Never paste secrets, credentials, personal data or non-public data into
   external AI services.
